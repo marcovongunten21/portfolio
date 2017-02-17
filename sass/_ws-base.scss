@@ -1,0 +1,264 @@
+/*
+|--------------------------------------------------------------------------
+| Type
+|--------------------------------------------------------------------------
+*/
+a {
+	text-decoration: none;
+	color: inherit;
+	border-bottom: 2px solid $ws-brand-primary;
+	transition: $ws-transition;
+}
+
+a:hover,
+a:focus {
+	text-decoration: none;
+	color: $ws-brand-primary;
+	transition: $ws-transition;
+}
+
+
+
+/*
+|--------------------------------------------------------------------------
+| Header
+|--------------------------------------------------------------------------
+*/
+@keyframes logoFadeIn {
+	from {
+		opacity: 0;
+	}
+
+	to {
+		opacity: 1;
+	}
+}
+
+@keyframes headerFadeOut {
+	from {
+		opacity: 1;
+	}
+
+	to {
+		opacity: 0.6;
+	}
+}
+
+header {
+	height: 66.66666vh;
+	position: relative;
+
+	&:after {
+		background: rgba($ws-brand-primary, 0.9);
+		content: '';
+		display: block;
+		height: 40px;
+		left: 0;
+		position: absolute;
+		right: 0;
+		z-index: 0;
+		-webkit-backface-visibility: hidden;
+
+		// for Chrome Windows
+		bottom: -36px;
+		transform: skewY(-1.8deg);
+		transform-origin: 0;
+	}
+}
+
+.parallax-mirror {
+	animation: headerFadeOut ease-in 1;
+	animation-fill-mode: forwards;
+	animation-duration: 1s;
+	animation-delay: 0.4s;
+}
+
+.logo-wrapper {
+	opacity: 0;
+	animation: logoFadeIn ease-in 1;
+	animation-fill-mode: forwards;
+	animation-duration: 1s;
+	animation-delay: 1.7s;
+}
+
+
+
+/*
+|--------------------------------------------------------------------------
+| Sections
+|--------------------------------------------------------------------------
+*/
+section {
+	position: relative;
+	background-color: $ws-white;
+
+	&.-gray {
+		background-color: $ws-mercury;
+	}
+
+	&:nth-child(2n+1){
+
+		&:before,
+		&:after {
+			background: inherit;
+			content: '';
+			display: block;
+			height: 40px;
+			left: 0;
+			position: absolute;
+			right: 0;
+			z-index: 1;
+			-webkit-backface-visibility: hidden;
+		}
+
+		&:before {
+			top: 0;
+			transform: skewY(-1.1deg);
+			transform-origin: 0;
+		}
+
+		&:after {
+			bottom: 0;
+			transform: skewY(1.1deg);
+			transform-origin: 0;
+		}
+	}
+
+
+	&:nth-child(2n) {
+		background-color: $ws-brand-secondary;
+		color: $ws-silver-sand;
+
+		h1, h2, h3, h4, h5, h6,
+		.h1, .h2, .h3, .h4, .h5, .h6 {
+			color: $ws-white;
+		}
+	}
+}
+
+.absolute-img-wrapper {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: calc(50% - 60px);
+	overflow: hidden;
+	height: 100%;
+
+	&.-right {
+		left: auto;
+		right: 0;
+	}
+
+	img {
+		height: 100%;
+	}
+}
+
+@include media-breakpoint-down(sm) {
+
+	.absolute-img-wrapper {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		overflow: hidden;
+		height: 100%;
+
+		img {
+			opacity: 0.15;
+		}
+	}
+}
+
+
+
+/*
+|--------------------------------------------------------------------------
+| Cards
+|--------------------------------------------------------------------------
+*/
+.card-list {
+	display: flex;
+	flex-wrap: wrap;
+	margin-left: -15px;
+	margin-right: -15px;
+}
+
+.card {
+	margin-bottom: 30px;
+	display: flex;
+	flex-direction: column;
+	width: 33.3333333%;
+	position: relative;
+	padding: 0 15px;
+
+	.card-details {
+		padding: 40px;
+		display: flex;
+		flex: 1;
+		flex-direction: column;
+		background-color: $ws-white;
+
+		.card-tail {
+			margin-top: auto;
+		}
+	}
+
+	.card-image-wrapper {
+		display: block;
+		border-bottom: 0;
+		position: relative;
+		overflow: hidden;
+
+		.card-image {
+			background-size: cover;
+			height: 245px;
+			display: block;
+			transform: scale(1.05);
+			transition: $ws-transition;
+		}
+
+		.card-image-hover {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background-color: $ws-brand-primary;
+			opacity: 0;
+			transition: $ws-transition;
+		}
+
+		&:hover {
+
+			.card-image {
+				transform: scale(1);
+				transition: $ws-transition;
+			}
+
+			.card-image-hover {
+				opacity: 0.9;
+				transition: $ws-transition;
+			}
+		}
+	}
+
+	&.-featured {
+		display: flex;
+		flex-direction: row;
+		width: 100%;
+
+		.card-details {
+			height: 490px;
+		}
+
+		.card-image-wrapper {
+			display: inline-block;
+			flex: 2;
+		}
+
+		.card-image {
+			height: 100%;
+		}
+	}
+}

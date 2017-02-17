@@ -1,0 +1,30 @@
+{
+  "name": "ws2016",
+  "version": "1.0.0",
+  "description": "Prototype for WS2016 Website",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "WeServe AG",
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "autoprefixer": "^6.4.1",
+    "cssnext": "^1.8.4",
+    "grunt": ">=0.4.5 <1.0.0",
+    "grunt-contrib-concat": "^1.0.1",
+    "grunt-contrib-cssmin": "^1.0.1",
+    "grunt-contrib-uglify": "^2.0.0",
+    "grunt-contrib-watch": "^1.0.0",
+    "grunt-express": "^1.4.1",
+    "grunt-postcss": "^0.8.0",
+    "grunt-sass": "^1.0.0",
+    "precss": "^1.4.0",
+    "time-grunt": "^1.4.0"
+  },
+  "dependencies": {
+    "bootstrap": "twbs/bootstrap#v4-dev",
+    "jquery": "^3.1.1",
+    "jquery-parallax.js": "^1.4.3"
+  }
+}

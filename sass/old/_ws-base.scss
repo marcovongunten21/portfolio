@@ -1,0 +1,105 @@
+/*
+|--------------------------------------------------------------------------
+| Header
+|--------------------------------------------------------------------------
+*/
+@keyframes logoFadeIn {
+	from {
+		opacity: 0;
+	}
+
+	to {
+		opacity: 1;
+	}
+}
+
+@keyframes headerFadeOut {
+	from {
+		opacity: 1;
+	}
+
+	to {
+		opacity: 0.6;
+	}
+}
+
+header {
+	height: 66.66666vh;
+	position: relative;
+
+	&:after {
+		background: rgba($ws-brand-primary, 0.9);
+		content: '';
+		display: block;
+		height: 40px;
+		left: 0;
+		position: absolute;
+		right: 0;
+		z-index: 0;
+		-webkit-backface-visibility: hidden;
+
+		// for Chrome Windows
+		bottom: -36px;
+		transform: skewY(-1.8deg);
+		transform-origin: 0;
+	}
+}
+
+.parallax-mirror {
+	animation: headerFadeOut ease-in 1;
+	animation-fill-mode: forwards;
+	animation-duration: 1s;
+	animation-delay: 0.4s;
+}
+
+.logo-wrapper {
+	opacity: 0;
+	animation: logoFadeIn ease-in 1;
+	animation-fill-mode: forwards;
+	animation-duration: 1s;
+	animation-delay: 1.7s;
+}
+
+
+
+/*
+|--------------------------------------------------------------------------
+| Sections
+|--------------------------------------------------------------------------
+*/
+section {
+	position: relative;
+	background-color: $ws-bright;
+
+	&.grey {
+		background-color: $ws-gray-lightest;
+	}
+
+	&.sloped-before:before,
+	&.sloped-after:after {
+		background: inherit;
+		content: '';
+		display: block;
+		height: 40px;
+		left: 0;
+		position: absolute;
+		right: 0;
+		z-index: 1;
+		-webkit-backface-visibility: hidden;
+
+		// for Chrome Windows
+
+	}
+
+	&.sloped-before:before {
+		top: 0;
+		transform: skewY(-1.1deg);
+		transform-origin: 0;
+	}
+
+	&.sloped-after:after {
+		bottom: 0;
+		transform: skewY(1.1deg);
+		transform-origin: 0;
+	}
+}

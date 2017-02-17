@@ -1,0 +1,219 @@
+/*
+|--------------------------------------------------------------------------
+| Navigation
+|--------------------------------------------------------------------------
+*/
+
+// Variables
+$ws-nav-icon-background-color: $ws-brand-primary;
+$ws-nav-icon-color: $ws-bright;
+$ws-nav-icon-close-color: $ws-gray-light;
+
+$ws-nav-background-color: $ws-gray-dark;
+$ws-nav-border-color: $ws-bright;
+$ws-nav-link-color: $ws-gray-light;
+$ws-nav-link-active-color: $ws-bright;
+
+
+
+// Nav Icon
+.nav-icon {
+	width: 50px;
+	height: 40px;
+	position: fixed;
+	margin: 1rem;
+	transform: rotate(0deg);
+	transition: .1s ease-in-out;
+	cursor: pointer;
+	z-index: 3;
+	border-radius: 3px;
+	background-color: $ws-nav-icon-background-color;
+
+	span {
+		display: block;
+		position: absolute;
+		height: 4px;
+		width: 22px;
+		background: $ws-nav-icon-color;
+		opacity: 1;
+		right: 14px;
+		transform: rotate(0deg);
+		transition: .25s ease-out;
+
+		&:nth-child(1) {
+			top: 11px;
+		}
+
+		&:nth-child(2) {
+			top: 18px;
+		}
+
+		&:nth-child(3) {
+			top: 25px;
+		}
+	}
+
+	&:hover span:nth-child(2),
+	&:focus span:nth-child(2) {
+		right: 18px;
+	}
+
+	&.open {
+		background: transparent;
+
+		span {
+			background: $ws-nav-icon-close-color;
+			height: 6px;
+			width: 24px;
+
+			&:nth-child(1) {
+				top: 18px;
+				transform: rotate(135deg);
+			}
+
+			&:nth-child(2) {
+				opacity: 0;
+				right: -60px;
+			}
+
+			&:nth-child(3) {
+				top: 18px;
+				transform: rotate(-135deg);
+			}
+		}
+	}
+}
+
+
+//Nav
+nav {
+	background-color: $ws-nav-background-color;
+	position: fixed;
+	top: 0;
+	left: 0;
+	padding: 80px 30px 40px;
+	height: 100vh;
+	z-index: 2;
+	margin-left: -400px;
+	transition: 0.3s ease-in-out;
+
+	&:after {
+		background: inherit;
+		border-right: 4px solid $ws-nav-border-color;
+		content: '';
+		display: block;
+		height: 100%;
+		right: 0;
+		width: 120px;
+		position: absolute;
+		z-index: -1;
+		-webkit-backface-visibility: hidden;
+
+		// for Chrome Windows
+		top: 0;
+		transform-origin: 100% 100%;
+		transition: 0.45s ease-in-out;
+	}
+
+	ul {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+	}
+
+	.main-nav a {
+		display: block;
+		text-align: left;
+		font-family: $ws-headings-font-family;
+		font-weight: $ws-headings-font-weight;
+		font-size: $ws-font-size-h2;
+		transition: margin 0.55s ease-in-out;
+		text-decoration: none;
+		margin-left: -40px;
+		color: darken($ws-nav-link-color, 20%);
+
+		&:before {
+			color: $ws-nav-link-color;
+			content: attr(data-hover);
+			position: absolute;
+			transition: transform 0.2s ease 0s, opacity 0.2s ease 0s;
+		}
+
+		&:hover,
+		&:focus {
+			text-decoration: none;
+		}
+
+		&:hover:before {
+			opacity: 0;
+			transform: scale(0.94);
+		}
+
+		&.active {
+			text-decoration: none;
+			color: $ws-bright;
+			cursor: default;
+		}
+
+		&.active:before {
+			color: $ws-bright;
+			transform: scale(1);
+		}
+	}
+
+	.lang-nav {
+		position: absolute;
+		bottom: 40px;
+		left: 30px;
+
+		li {
+			display: inline-block;
+
+			a {
+				font-size: 1.25rem;
+				font-family: $ws-headings-font-family;
+				font-weight: $ws-headings-font-weight;
+				color: $ws-gray-light;
+				text-decoration: none;
+				transition: color 0.2s ease-in-out;
+
+				&:after {
+					color: $ws-gray-light;
+					content: " | ";
+				}
+
+				&:hover,
+				&:focus {
+					color: $ws-nav-link-active-color;
+				}
+			}
+
+			&.active a {
+				color: $ws-nav-link-active-color;
+				cursor: default;
+			}
+
+			&:last-of-type a:after {
+				content: "";
+			}
+		}
+	}
+
+	&.open {
+		margin-left: 0;
+
+		&:after {
+			transform: skew(-6deg);
+		}
+
+		a {
+			margin-left: 0;
+		}
+	}
+}
+
+@include media-breakpoint-down(xs) {
+	nav a {
+		font-size: $ws-font-size-h4;
+	}
+}
